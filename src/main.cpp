@@ -35,7 +35,7 @@ void loop() {
     pwms[11] = random(0, 4096);
     pwmController.setChannelsPWM(0, 12, pwms);
     Serial.println(pwms[0]);
-    Serial.println("OwO");
+    Serial.println("UwU");
     digitalWrite(PIN_LED, led_state);
     led_state = !led_state;
     delay(100);
