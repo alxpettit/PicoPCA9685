@@ -16,7 +16,6 @@ from typing import Union, List, Optional
 import libtmux
 from libtmux import Session, Pane
 
-
 def escape_args(args: List[str]) -> str:
     return ' '.join(shlex.quote(arg) for arg in args)
 
