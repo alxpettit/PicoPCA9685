@@ -21,18 +21,9 @@ void setup() {
 bool led_state = false;
 void loop() {
     uint16_t pwms[12];
-    pwms[0] = random(0, 4096);
-    pwms[1] = random(0, 4096);
-    pwms[2] = random(0, 4096);
-    pwms[3] = random(0, 4096);
-    pwms[4] = random(0, 4096);
-    pwms[5] = random(0, 4096);
-    pwms[6] = random(0, 4096);
-    pwms[7] = random(0, 4096);
-    pwms[8] = random(0, 4096);
-    pwms[9] = random(0, 4096);
-    pwms[10] = random(0, 4096);
-    pwms[11] = random(0, 4096);
+    for (unsigned short & pwm : pwms) {
+        pwm = random(0, 4096);
+    }
     pwmController.setChannelsPWM(0, 12, pwms);
     Serial.println(pwms[0]);
     Serial.println("UwU");
