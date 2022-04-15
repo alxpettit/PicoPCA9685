@@ -18,15 +18,30 @@ void setup() {
     randomSeed(analogRead(0));          // Use white noise for our randomness
 }
 
+uint16_t pwms[12];
+
 bool led_state = false;
+bool demo_enabled = false;
+char c;
 void loop() {
-    uint16_t pwms[12];
-    for (unsigned short & pwm : pwms) {
-        pwm = random(0, 4096);
+    if (demo_enabled) {
+        for (unsigned short &pwm : pwms) {
+            pwm = random(0, 4096);
+        }
+        pwmController.setChannelsPWM(0, 12, pwms);
     }
-    pwmController.setChannelsPWM(0, 12, pwms);
-    Serial.println(pwms[0]);
-    Serial.println("UwU");
+    Serial.println(demo_enabled ? "Demo enabled UwU" : "Demo disabled :c");
+    if (Serial.available()) {
+        c = Serial.read();
+        switch (c) {
+            case 'e':
+                demo_enabled = true;
+                break;
+            case 'd':
+                demo_enabled = false;
+                break;
+        };
+    }
     digitalWrite(PIN_LED, led_state);
     led_state = !led_state;
     delay(100);
