@@ -22,7 +22,7 @@ uint16_t pwms[12];
 
 bool led_state = false;
 bool demo_enabled = false;
-char c;
+int c;
 void loop() {
     if (demo_enabled) {
         for (unsigned short &pwm : pwms) {
@@ -39,6 +39,8 @@ void loop() {
                 break;
             case 'd':
                 demo_enabled = false;
+                break;
+            default: // leave me alone, clang
                 break;
         };
     }
